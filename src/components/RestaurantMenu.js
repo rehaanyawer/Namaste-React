@@ -14,7 +14,7 @@ const RestaurantMenu = () => {
   return !restaurant ? (
     <Shimmer />
   ) : (
-    <div className='menu'>
+    <div className=''>
       <img src={IMG_CDN_URL + restaurant?.cloudinaryImageId}></img>
       <h1>restaurant id: {resId}</h1>
       <h2>restaurant Name {restaurant?.name}</h2>

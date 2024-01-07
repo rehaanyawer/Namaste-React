@@ -44,10 +44,10 @@ export const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className='m-3 p-1'>
+      <div className='m-3 p-2 flex'>
         <input
           type='text'
-          className='border p-1'
+          className='border p-2 m-3'
           placeholder='Search'
           value={searchText}
           onChange={(e) => {
@@ -55,7 +55,7 @@ export const Body = () => {
           }}
         />
         <button
-          className='bg-purple-700 m-2 p-1 rounded-md hover:bg-purple-800 text-white'
+          className='p-2 bg-gray-400 m-4 hover:bg-slate-300'
           onClick={() => {
             const data = filterData(allRestaurants, searchText);
             setFilteredRestaurant(data);
@@ -65,7 +65,7 @@ export const Body = () => {
         </button>
       </div>
 
-      <div className='flex flex-wrap justify-center'>
+      <div className='flex flex-wrap'>
         {filteredRestaurant.map((restaurant) => {
           return (
             <Link
