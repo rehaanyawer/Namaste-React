@@ -9,7 +9,7 @@ const Header = () => {
       </div>
 
       <div className=''>
-        <ul className='flex space-x-10 p-5'>
+        <ul className='flex space-x-10 p-5 '>
           <li className=''>
             <Link to='/'>Home</Link>
           </li>
