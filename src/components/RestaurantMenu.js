@@ -3,6 +3,7 @@ import Shimmer from './Shimmer';
 import { IMG_CDN_URL } from '../config';
 import UseRestaurant from '../utils/useRestaurant';
 import useInternet from '../utils/useInternet';
+import RestaurantCategory from './RestaurantCategory';
 
 const RestaurantMenu = () => {
   const isOffline = useInternet();
@@ -10,15 +11,35 @@ const RestaurantMenu = () => {
 
   const restaurant = UseRestaurant(resId);
 
+  if (!restaurant) {
+    return <Shimmer />;
+  }
+
+  const { costForTwoMessage, name, cuisines } =
+    restaurant?.data?.cards[0]?.card?.card?.info;
+
+  const { itemCards } =
+    restaurant?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+
+  const categories =
+    restaurant?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.['@type'] ===
+        'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
+    );
+
   if (isOffline) return <h1> oops internet error</h1>;
-  return !restaurant ? (
-    <Shimmer />
-  ) : (
-    <div className=''>
-      <img src={IMG_CDN_URL + restaurant?.cloudinaryImageId}></img>
-      <h1>restaurant id: {resId}</h1>
-      <h2>restaurant Name {restaurant?.name}</h2>
-      <h3>Cost for Two: {restaurant?.costForTwoMessage}</h3>
+  return (
+    <div className='text-center'>
+      {/* <h1>restaurant id: {resId}</h1> */}
+      <h1 className='font-bold my-3 text-2xl'>{name}</h1>
+      <p className='font-bold text-lg'>
+        {cuisines.join(', ')} - {costForTwoMessage}
+      </p>
+      {console.log(categories)}
+      {categories.map((category) => (
+        <RestaurantCategory />
+      ))}
     </div>
   );
 };
