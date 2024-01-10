@@ -3,10 +3,12 @@ import Shimmer from './Shimmer';
 import UseRestaurant from '../utils/useRestaurant';
 import useInternet from '../utils/useInternet';
 import RestaurantCategory from './RestaurantCategory';
-
+import { useState } from 'react';
 const RestaurantMenu = () => {
   const isOffline = useInternet();
   const { resId } = useParams();
+
+  const [showIndex, setShowIndex] = useState(0);
 
   const restaurant = UseRestaurant(resId);
 
@@ -27,6 +29,8 @@ const RestaurantMenu = () => {
         'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
     );
 
+  //to control the childs
+
   if (isOffline) return <h1> oops internet error</h1>;
   return (
     <div className='text-center'>
@@ -36,10 +40,14 @@ const RestaurantMenu = () => {
         {cuisines.join(', ')} - {costForTwoMessage}
       </p>
       {/* {console.log(categories)} */}
-      {categories.map((category) => (
+      {categories.map((category, index) => (
         <RestaurantCategory
           data={category?.card?.card}
           key={category?.card?.card?.name}
+          description={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+          index={index}
+          showIndex={showIndex}
         />
       ))}
     </div>

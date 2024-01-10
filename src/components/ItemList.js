@@ -1,6 +1,5 @@
 import { IMG_CDN_URL } from '../config.js';
 const ItemList = ({ items }) => {
-  console.log(items);
   return (
     <div>
       {items.map((item) => (
@@ -9,7 +8,7 @@ const ItemList = ({ items }) => {
           className='p-2 m-2  border-b-2 border-gray-200 text-left flex justify-between'
         >
           <div className='w-9/12'>
-            <div className='py-2 tracking-wider'>
+            <div className='py-2 tracking-normal'>
               <span>{item?.card?.info?.name}</span>
               <span>{' ₹' + item?.card?.info?.price / 100}</span>
             </div>
