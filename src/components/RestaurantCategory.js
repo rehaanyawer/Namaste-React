@@ -3,14 +3,12 @@ const RestaurantCategory = ({
   data,
   description,
   setShowIndex,
-  index,
   showIndex,
+  index,
 }) => {
   const handleClick = () => {
     {
-      index == showIndex ? setShowIndex(0) : setShowIndex();
-
-      console.log(index, showIndex);
+      index === showIndex ? setShowIndex(-1) : setShowIndex(index);
     }
   };
   return (
@@ -23,7 +21,7 @@ const RestaurantCategory = ({
           <span className='text-lg font-bold'>
             {data.title}({data.title.length})
           </span>
-          <span>🔽</span>
+          <span>{showIndex === index ? '🔽' : '🔼'}</span>
         </div>
         {description && <ItemList items={data.itemCards} />}
       </div>

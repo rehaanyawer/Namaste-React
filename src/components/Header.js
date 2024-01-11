@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import Logo from '../assets/img/logo.png';
+import UserContext from '../utils/UserContext';
+import { useContext } from 'react';
 
 const Header = () => {
+  const data = useContext(UserContext);
+
   return (
     <div className='flex justify-between items-center'>
       <div className='logo-container'>
@@ -19,6 +23,7 @@ const Header = () => {
           <li className=''>
             <Link to='/About'>About Us</Link>
           </li>
+          <li className=''>{data.default}</li>
         </ul>
       </div>
     </div>

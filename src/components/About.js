@@ -1,6 +1,6 @@
 import Profile from './Profile';
 import React from 'react';
-
+import UserContext from '../utils/UserContext.js';
 class About extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +16,9 @@ class About extends React.Component {
     return (
       <>
         <h1>This is the about us page</h1>
+        <UserContext.Consumer>
+          {(UserContext) => <h1>{UserContext.default}</h1>}
+        </UserContext.Consumer>
         <Profile key={1} />
       </>
     );
