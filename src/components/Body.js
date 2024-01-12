@@ -3,6 +3,8 @@ import { RestaurantCard, withPromotedLabel } from './RestaurantCard';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useInternet from '../utils/useInternet';
+import UserContext from '../utils/UserContext';
+import { useContext } from 'react';
 
 function filterData(allRestaurants, searchText) {
   const filteredData = allRestaurants.filter((restaurant) =>
@@ -17,7 +19,6 @@ export const Body = () => {
   const [searchText, setSearchText] = useState('');
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const isOffline = useInternet();
-
   const RestaurantPromoted = withPromotedLabel(RestaurantCard);
 
   //use effect function
@@ -40,9 +41,11 @@ export const Body = () => {
   }
 
   if (!allRestaurants) return null;
+
   if (isOffline) {
     return <h1>oops no internet</h1>;
   }
+  const { setUsername, newUser } = useContext(UserContext);
   return allRestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -50,7 +53,7 @@ export const Body = () => {
       <div className='m-3 p-2 flex'>
         <input
           type='text'
-          className='border p-2 m-3 rounded-lg'
+          className='border border-slate-400 p-2 m-3 rounded-lg'
           placeholder='Search'
           value={searchText}
           onChange={(e) => {
@@ -66,6 +69,12 @@ export const Body = () => {
         >
           Search
         </button>
+        <input
+          className='border border-slate-400 m-3 p-2 rounded-lg'
+          value={newUser}
+          onChange={(e) => setUsername(e.target.value)}
+          type='text'
+        />
       </div>
 
       <div className='flex flex-wrap max-w-[1366px] m-auto justify-between'>
