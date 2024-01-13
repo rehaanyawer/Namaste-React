@@ -1,5 +1,13 @@
 import { IMG_CDN_URL } from '../config.js';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../utils/cartSlice.js';
 const ItemList = ({ items }) => {
+  const dispatch = useDispatch();
+
+  const handleAddItems = (item) => {
+    dispatch(addItem(item));
+  };
+
   return (
     <div>
       {items.map((item) => (
@@ -14,11 +22,14 @@ const ItemList = ({ items }) => {
             </div>
             <p className='text-xs tracking-wider'>
               {item?.card?.info?.description}
-            </p>{' '}
+            </p>
           </div>
           <div className='w-3/12 p-4 relative flex justify-center'>
             <img src={IMG_CDN_URL + item?.card?.info?.imageId} />
-            <button className='shadow-xl p-2 bg-slate-200 rounded-xl text-green-700 text-lg hover:bg-slate-300 absolute bottom-2 m-auto'>
+            <button
+              onClick={() => handleAddItems(item)}
+              className='shadow-xl p-2 bg-slate-200 rounded-xl text-green-700 text-lg hover:bg-slate-300 absolute bottom-2 m-auto'
+            >
               Add +
             </button>
           </div>
