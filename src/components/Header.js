@@ -23,6 +23,7 @@ const Header = () => {
           <li className=''>
             <Link to='/About'>About Us</Link>
           </li>
+          <li>Cart</li>
           <li className=''>{data.default}</li>
         </ul>
       </div>
