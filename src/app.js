@@ -9,9 +9,11 @@ import Error from './components/Error.js';
 import RestaurantMenu from './components/RestaurantMenu';
 import Profile from './components/Profile';
 import { useEffect } from 'react';
-
+import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import UserContext from './utils/UserContext.js';
+import appStore from './utils/appStore.js';
+import Cart from './components/Cart.js';
 
 const About = lazy(() => import('./components/About'));
 const AppLayout = () => {
@@ -23,13 +25,15 @@ const AppLayout = () => {
     setUsername(data.user);
   }, []);
   return (
-    <UserContext.Provider value={{ newUser: userName, setUsername }}>
-      <>
-        <Header />
-        <Outlet />
-        <Footer />
-      </>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ newUser: userName, setUsername }}>
+        <>
+          <Header />
+          <Outlet />
+          <Footer />
+        </>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 const appRouter = createBrowserRouter([
@@ -63,6 +67,10 @@ const appRouter = createBrowserRouter([
       {
         path: '/restaurant/:resId',
         element: <RestaurantMenu />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },
