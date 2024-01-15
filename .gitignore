@@ -1,3 +1,9 @@
-node_modules
+/node_modules
 .parcel-cache
-dist
+/dist
+/coverage
+coverage/clover.xml
+coverage/coverage-final.json
+coverage/lcov.info
+coverage/lcov-report/index.html
+coverage/lcov-report/Sum.js.html

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Logo from '../assets/img/logo.png';
+// import Logo from '../assets/img/logo.png';
 import UserContext from '../utils/UserContext';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,7 +12,8 @@ const Header = () => {
   return (
     <div className='flex justify-between items-center'>
       <div className='logo-container'>
-        <img className='w-40' src={Logo} />
+        {/* <img className='w-40' src={Logo} /> */}
+        LOGO
       </div>
 
       <div className=''>
