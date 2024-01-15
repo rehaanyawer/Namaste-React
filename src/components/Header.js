@@ -1,13 +1,18 @@
 import { Link } from 'react-router-dom';
 // import Logo from '../assets/img/logo.png';
 import UserContext from '../utils/UserContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
   const data = useContext(UserContext);
+  const [isLogin, setIsLogin] = useState(false);
 
   const cartItems = useSelector((store) => store.cart.items);
+
+  const handleLogin = () => {
+    setIsLogin(!isLogin);
+  };
 
   return (
     <div className='flex justify-between items-center'>
@@ -26,6 +31,11 @@ const Header = () => {
           </li>
           <li className=''>
             <Link to='/About'>About Us</Link>
+          </li>
+          <li>
+            <button onClick={handleLogin}>
+              {isLogin ? 'Logout' : 'Login'}
+            </button>
           </li>
           <li>
             <Link to='/cart'> Cart ({cartItems.length} items) </Link>
