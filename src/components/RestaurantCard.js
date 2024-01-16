@@ -1,12 +1,10 @@
 import { IMG_CDN_URL } from '../config';
 import UserContext from '../utils/UserContext';
 import { useContext } from 'react';
-export const RestaurantCard = ({
-  cloudinaryImageId,
-  name,
-  cuisines,
-  avgRating,
-}) => {
+export const RestaurantCard = (props) => {
+  const { resData } = props;
+  console.log(resData);
+  const { cloudinaryImageId, name, cuisines, avgRating } = resData;
   const data = useContext(UserContext);
   return (
     <div className='w-56 p-2 m-2 shadow-lg bg-slate-50 hover:bg-gray-200 h-96 rounded-xl'>

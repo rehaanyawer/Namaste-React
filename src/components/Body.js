@@ -85,9 +85,9 @@ export const Body = () => {
               key={restaurant?.info?.id}
             >
               {restaurant?.info?.availability?.opened ? (
-                <RestaurantPromoted {...restaurant?.info} />
+                <RestaurantPromoted resData={restaurant?.info} />
               ) : (
-                <RestaurantCard {...restaurant?.info} />
+                <RestaurantCard resData={restaurant?.info} />
               )}
             </Link>
           );

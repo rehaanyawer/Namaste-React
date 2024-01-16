@@ -1,11 +1,7 @@
 import ItemList from './ItemList';
-const RestaurantCategory = ({
-  data,
-  description,
-  setShowIndex,
-  showIndex,
-  index,
-}) => {
+const RestaurantCategory = (props) => {
+  const resData = props;
+  const { data, description, setShowIndex, showIndex, index } = resData;
   const handleClick = () => {
     {
       index === showIndex ? setShowIndex(-1) : setShowIndex(index);
