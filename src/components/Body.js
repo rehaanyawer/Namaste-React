@@ -53,6 +53,7 @@ export const Body = () => {
       <div className='m-3 p-2 flex'>
         <input
           type='text'
+          data-testid='searchInput'
           className='border border-slate-400 p-2 m-3 rounded-lg'
           placeholder='Search'
           value={searchText}

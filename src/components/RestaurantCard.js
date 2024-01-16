@@ -3,11 +3,13 @@ import UserContext from '../utils/UserContext';
 import { useContext } from 'react';
 export const RestaurantCard = (props) => {
   const { resData } = props;
-  console.log(resData);
   const { cloudinaryImageId, name, cuisines, avgRating } = resData;
   const data = useContext(UserContext);
   return (
-    <div className='w-56 p-2 m-2 shadow-lg bg-slate-50 hover:bg-gray-200 h-96 rounded-xl'>
+    <div
+      data-testid='resCard'
+      className='w-56 p-2 m-2 shadow-lg bg-slate-50 hover:bg-gray-200 h-96 rounded-xl'
+    >
       <div className=''>
         <img
           className='h-56 w-56 mb-3 rounded-xl'

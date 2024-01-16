@@ -4,14 +4,21 @@ const Shimmer = () => {
       {Array(9)
         .fill('')
         .map((e, index) => (
-          <>
-            <div className='wrapper'>
-              <div className='shimmer-card'></div>
-              <div className='sub-shimmer-cards'></div>
-              <div className='sub-shimmer-cards card1'></div>
-              <div className='sub-shimmer-cards card2'></div>
-            </div>
-          </>
+          <div className='wrapper' key={`wrapper-${index}`}>
+            <div className='shimmer-card' key={`shimmer-card-${index}`}></div>
+            <div
+              className='sub-shimmer-cards'
+              key={`sub-shimmer-cards-${index}`}
+            ></div>
+            <div
+              className='sub-shimmer-cards card1'
+              key={`card1-${index}`}
+            ></div>
+            <div
+              className='sub-shimmer-cards card2'
+              key={`card2-${index}`}
+            ></div>
+          </div>
         ))}
     </div>
   );
