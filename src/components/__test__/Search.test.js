@@ -26,7 +26,7 @@ it('should render the body component with Search button', async () => {
   expect(searchButton).toBeInTheDocument();
 });
 
-it('should trigger the input and click the search button to find the matches', async () => {
+it('should trigger the input and click the search button to find the matches.', async () => {
   await act(async () =>
     render(
       <BrowserRouter>
